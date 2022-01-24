@@ -1,4 +1,3 @@
-import "regenerator-runtime/runtime";
 import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
