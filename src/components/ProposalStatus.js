@@ -12,6 +12,9 @@ const statusMap = {
   defeated: {
     color: "red",
   },
+  pending: {
+    color: "teal",
+  },
 };
 
 function ProposalStatus({ status, ...props }) {

@@ -23,6 +23,8 @@ export class Action {
   gas: string;
 }
 
+const ONE_WEEK = 7 * 24 * 3600 * 1000;
+
 @nearBindgen
 export class Proposal {
   proposalId: string;
@@ -57,7 +59,7 @@ export class Proposal {
     this.proposalId = rng.next().toString();
     this.proposer = context.predecessor;
     this.startBlock = context.blockTimestamp / 1000000;
-    this.endBlock = this.startBlock + 7 * 24 * 3600 * 1000;
+    this.endBlock = this.startBlock + ONE_WEEK;
     this.description = description;
     this.actions = actions;
     this.votes = [];
@@ -83,6 +85,9 @@ export class Proposal {
     if (this.endBlock > context.blockTimestamp / 1000000) {
       return "active";
     }
+    if (!this.votes.length) {
+      return "pending";
+    }
     if (this._hasSupport()) {
       return "succeeded";
     } else {
@@ -94,7 +99,7 @@ export class Proposal {
     const proposal = proposalsMap.getSome(proposalId);
     assert(proposal, "Proposal not found");
     const status = proposal.getStatus();
-    // assert(status === "succeeded", "Proposal was not successful");
+    assert(status === "succeeded", "Proposal was not successful");
 
     logging.log(`Executing: ${proposal.proposalId}`);
     logging.log(`status: ${proposal.executed}`);
