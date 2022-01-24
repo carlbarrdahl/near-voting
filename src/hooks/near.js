@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import getConfig from "../config";
 
-const config = getConfig(process.env.NODE_ENV || "development");
+const config = getConfig("testnet");
 
 const NearContext = createContext({});
 
