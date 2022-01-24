@@ -1,11 +1,3 @@
-1. Sign in to NEAR
-2. View created proposals
-3. Create new proposal
-4. Vote for proposal
-5. Navigate to older proposal
-6. Execute proposal
-7. View transaction and verify action was triggered
-
 # NEAR On-Chain Voting
 
 Implemenation of on-chain voting in NEAR blockchain using AssemblyScript for contracts.
